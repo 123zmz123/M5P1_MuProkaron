@@ -10,6 +10,7 @@
       <TargetName>RMP</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pArmCC>5060183::V5.06 update 2 (build 183)::ARMCC</pArmCC>
       <pCCUsed>5060183::V5.06 update 2 (build 183)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
@@ -319,16 +320,16 @@
             <PlainCh>1</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
             <useXO>0</useXO>
-            <v6Lang>1</v6Lang>
+            <v6Lang>2</v6Lang>
             <v6LangP>1</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>0</v6Lto>
+            <v6Lto>1</v6Lto>
             <v6WtE>0</v6WtE>
             <VariousControls>
               <MiscControls></MiscControls>
@@ -378,9 +379,9 @@
           <GroupName>MProkaron</GroupName>
           <Files>
             <File>
-              <FileName>kernel.c</FileName>
+              <FileName>rmp_kernel.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\MProkaron\Kernel\kernel.c</FilePath>
+              <FilePath>..\..\MProkaron\Kernel\rmp_kernel.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -388,14 +389,14 @@
           <GroupName>Platform</GroupName>
           <Files>
             <File>
-              <FileName>platform_cmx.c</FileName>
+              <FileName>rmp_platform_cmx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\MProkaron\Platform\CortexM\platform_cmx.c</FilePath>
+              <FilePath>..\..\MProkaron\Platform\CortexM\rmp_platform_cmx.c</FilePath>
             </File>
             <File>
-              <FileName>platform_cmx_asm.s</FileName>
+              <FileName>rmp_platform_cmx_asm.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\MProkaron\Platform\CortexM\platform_cmx_asm.s</FilePath>
+              <FilePath>..\..\MProkaron\Platform\CortexM\rmp_platform_cmx_asm.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -468,9 +469,9 @@
           <GroupName>Benchmark</GroupName>
           <Files>
             <File>
-              <FileName>test.c</FileName>
+              <FileName>rmp_test.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\MProkaron\Benchmark\test.c</FilePath>
+              <FilePath>..\..\MProkaron\Benchmark\rmp_test.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,4 +1,4 @@
-<h1 align="center">
+﻿<h1 align="center">
 	<img width="300" src="https://raw.githubusercontent.com/EDI-Systems/M5P1_MuProkaron/master/Documents/Demo/logo.png" alt="logo">
 </h1>
 
@@ -6,20 +6,21 @@
 [![Github release](https://img.shields.io/github/release/EDI-Systems/M5P1_MuProkaron.svg)](https://github.com/EDI-Systems/M5P1_MuProkaron/releases/latest)
 [![Github commits](https://img.shields.io/github/commits-since/EDI-Systems/M5P1_MuProkaron/master@{30day}.svg)](https://github.com/EDI-Systems/M5P1_MuProkaron/compare/master@{30day}...master)
 ![language](https://img.shields.io/badge/language-C-orange.svg)
-![Build](https://travis-ci.org/EDI-Systems/M5P1_MuProkaron.svg?branch=master) 
+[![Build](https://travis-ci.org/EDI-Systems/M5P1_MuProkaron.svg?branch=master)](https://travis-ci.org/EDI-Systems/M5P1_MuProkaron) 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1684/badge)](https://bestpractices.coreinfrastructure.org/projects/1684) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/be656c1e1f014a6abf038b4455b03bba)](https://www.codacy.com/app/EDI-Systems/M5P1_MuProkaron?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=EDI-Systems/M5P1_MuProkaron&amp;utm_campaign=Badge_Grade) 
 [![Join the chat at https://gitter.im/M5P1_MuProkaron/Lobby](https://badges.gitter.im/M5P1_MuProkaron/Lobby.svg)](https://gitter.im/M5P1_MuProkaron/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Click **[HERE](README.md)** for English version.
 
-&emsp;&emsp;**RMP** 是一个专注于形式化验证和简易可用的小型实时系统。它通过采取形式化方法来确保系统的可靠性（当前验证工作还未完成）。所有的实时操作系统必备的功能它都具备，但是并不在此基础上提供更多可选组件以确保内核的精炼性。这样，得到的内核就是一个最小化的内核，可以很方便地对它进行形式化验证。同时，它还可以作为客户操作系统运行在虚拟机监视器上。
+&emsp;&emsp;**RMP** 是一个专注于形式化验证和简易可用的小型实时系统。它通过采取形式化方法来确保系统的可靠性（当前验证工作还未完成；不过，100%的白盒测试分支覆盖率已经达到。目前的内核可以被看作IEC 61508 SIL2预认证等级，或者EAL 4）。所有的实时操作系统必备的功能它都具备，但是并不在此基础上提供更多可选组件以确保内核的精炼性。这样，得到的内核就是一个最小化的内核，可以很方便地对它进行形式化验证。同时，它还可以作为客户操作系统运行在虚拟机监视器上。
 
 &emsp;&emsp;本系统比以 _FreeRTOS_ 和 _RT-Thread_ 为代表的全功能系统相比要**小**得多，而且理解起来应该也相对容易得多。即便本系统仅仅包含了**一个.C**文件，它仍然提供了**高效的内存管理**，**抗锯齿图形界面库**和**其他实用函数**，并且这些功能的实现都**不消耗任何额外的RAM**！
 
-&emsp;&emsp;本系统的手册可以在 **[这里](https://github.com/EDI-Systems/M7M1_MuEukaron/blob/master/Documents/M7M1_%E5%BE%AE%E5%86%85%E6%A0%B8%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F_%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C.pdf)** 找到。
+&emsp;&emsp;本系统的手册可以在 **[这里](https://github.com/EDI-Systems/M5P1_MuProkaron/blob/master/Documents/M5P1_%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6.pdf)** 找到。
 
 &emsp;&emsp;如果想要参与开发，请阅读 **[参与](CONTRIBUTING.md)** 和 **[规范](CODE_OF_CONDUCT.md)** 两个指导文档。如果要提交拉取请求，请使用 **[拉取请求模板](PULL_REQUEST_TEMPLATE.md)** 。
-本软件采用 **三种不同的授权** ：你可以选择 **[LGPL v3](LICENSE.md)** ，也可以选择 **[经修改的MIT协议](MODMIT.md)** 。 如果有特殊需求， 也可以联系我们请求**商业授权**。
+本软件是EDI的官方作品，因此属于 **公有领域** 。 所有由EDI保留的版权在所有适用的法律条款下尽最大可能地授权给所有实体。
 
 &emsp;&emsp;对于那些由微控制器厂商提供的硬件抽象层软件包，请到 **[M0P0_Library](https://github.com/EDI-Systems/M0P0_Library)** 软件仓库自行下载。
 
@@ -151,34 +152,46 @@ Click **[HERE](README.md)** for English version.
 ```
 
 ### 所有被支持架构上的典型性能数据
+
+&emsp;&emsp;Flash和SRAM消耗以kB计，其他数据以CPU指令周期计。下表列出的所有值都是**典型（有意义的系统配置）值**而非绝对意义上的**最小值**，因为纯技术层面的最小配置在实际工程中很少是真正有用的。HAL库所造成的额外存储器消耗也被计算在内。  
+
+&emsp;&emsp;本系统的**绝对最小值**在**1.6k ROM和432Byte RAM**左右，这个大小是在HC32L136K8TA（Cortex-M0+）的移植上达到的，并包括了第一个线程的60Byte的线程控制块和256Byte的线程栈，以及64Byte的内核中断响应用栈。操作系统内核和最精简的HAL库一共仅占用了**52Byte**存储。如果你对这个数字还有不满意，那么可以**不使用厂商提供的HAL库**而自己写一个版本。  
+
 |架构          |工具链        |Flash|SRAM|Yield|Mail |Sem  |Mail/Int|Sem/Int|Mem  |
 |:-----------:|:------------:|:---:|:--:|:---:|:---:|:---:|:------:|:-----:|:---:|
+|DSPIC33E     |XC16-GCC      |4.46 |1.15|526  |828  |750  |914     |884    |579  |
 |MSP430       |TI CCS7       |2.90 |0.64|495  |906  |786  |830     |736    |1575 |
 |Cortex-M0    |Keil uVision 5|4.94 |1.65|374  |663  |616  |659     |617    |N/A  |
 |Cortex-M0+   |Keil uVision 5|6.25 |1.65|334  |607  |544  |588     |552    |N/A  |
 |Cortex-M3    |Keil uVision 5|5.31 |1.65|252  |513  |448  |465     |418    |311  |
 |Cortex-M4    |Keil uVision 5|5.46 |1.66|188  |386  |353  |361     |329    |233  |
 |Cortex-M7    |Keil uVision 5|6.66 |1.65|196  |288  |277  |296     |296    |183  |
-|Cortex-M7-RVM|Keil uVision 5|2.09 |2.29|1068 |1179 |1221 |1402    |1444   |176  |
+|Cortex-M7    |GCC           |7.71 |1.98|176  |313  |276  |290     |268    |193  |
+|Cortex-M7-RVM|Keil uVision 5|2.09 |2.29|1068 |1256 |1195 |884     |866    |176  |
+|Cortex-M7-RVM|GCC           |2.15 |2.10|1103 |1277 |1225 |907     |866    |177  |
 |Cortex-R4    |TI CCS7       |15.1 |1.42|281  |458  |406  |424     |368    |274  |
 |Cortex-R5    |TI CCS7       |18.2 |3.72|305  |471  |426  |472     |432    |267  |
-|MIPS M14k    |XC32-GCC      |17.2 |2.46|264  |358  |340  |421     |415    |213  |
+|MIPS M14k    |XC32-GCC      |17.2 |2.46|263  |378  |358  |430     |420    |211  |
+|RV32IMAC     |GCC           |2.24 |2.89|261  |585  |506  |~800**  |~800** |N/A  |
 |X86-LINUX    |GCC           |N/A  |N/A |33000|35000|33000|35000   |33000  |136  |
 
-*作为对比，RT-Linux 4.12在Cortex-M7上的最好线程切换时间是25000时钟周期。这是使用futex测得的；如使用其他IPC如管道等，则结果更差。
+*作为对比，RT-Linux 4.12在Cortex-M7上的最好线程切换时间是25000时钟周期。这是使用futex测得的；如使用其他IPC如管道等，则结果更差。  
 
-&emsp;&emsp;**Flash和SRAM消耗以kB计，其他数据以CPU指令周期计。这里列出的所有值都是典型（有意义的系统配置）值而非绝对意义上的最小值，因为纯技术层面的最小配置在实际工程中很少是真正有用的。HAL库所造成的额外存储器消耗也被计算在内。本系统的绝对最小值在1k ROM/0.5k RAM左右。**
+**该值仅供参考；评估所使用的器件依赖于SPI Flash来运行代码，有时候一个指令缓存落空就会导致45000周期的延迟。传统上，依赖于外部SPI Flash的器件在做测量时需要很大的内部内存来运行这些代码，但是该器件没有如此多的内存可供使用。
 
+
+- DSPIC33E平台使用DSPIC33EP512MU810进行评估。
 - MSP430平台使用MSP430FR5994进行评估。
 - Cortex-M0平台使用STM32F030F4P6进行评估。
 - Cortex-M0+平台使用STM32L053C8T6进行评估。
 - Cortex-M3平台使用STM32F103RET6进行评估。
 - Cortex-M4平台使用STM32F405RGT6进行评估。
 - Cortex-M7平台使用STM32F767IGT6进行评估。
-- Cortex-M7-RVM平台使用STM32F767IGT6进行评估，而且RMP此时是作为客户机运行在 **[RVM](https://github.com/EDI-Systems/M7M2_MuAmmonite)** 嵌入式虚拟机监视器上.
+- Cortex-M7-RVM平台使用STM32F767IGT6进行评估，而且RMP此时是作为客户机运行在 **[RVM](https://github.com/EDI-Systems/M7M2_MuAmmonite)** 嵌入式虚拟机监视器上。
 - Cortex-R4平台使用TMS570LS0432进行评估。
 - Cortex-R5平台使用TMS570LC4357进行评估。
 - MIPS M14k平台使用PIC32MZ2048EFM100进行评估。
+- RV32IMAC平台使用FE310-G000进行评估。
 - X86 Linux平台使用Ubuntu 16.04和i7-4820k @ 3.7GHz进行评估。
 
 &emsp;&emsp;所有的编译器优化选项都被设为最高（通常是-O3），而且时间优化选项也被打开。 
@@ -192,11 +205,9 @@ Click **[HERE](README.md)** for English version.
 ### 将来可能支持的新架构
 |架构           |原因           |支持优先度                     |
 |:-------------:|:------------:|:----------------------------:|
-|PIC24/33/dsPIC |常用16位单片机 |:star::star::star::star::star:|
-|RL78           |常用16位单片机 |:star::star::star:            |
-|TI C2000       |常用DSP架构   |:star::star:                  |
-|RISC-V         |新兴RISC架构  |:star::star::star::star:      |
-|MicroBlaze     |常用软核      |:star:                        |
+|RL78           |常用16位单片机 |:star::star::star::star::star:|
+|TI C2000       |常用DSP架构   |:star::star::star::star:      |
+|MicroBlaze     |常用软核      |:star::star:                  |
 |NIOS II        |常用软核      |:star:                        |
 
 ### 明确不考虑支持的架构
@@ -254,3 +265,6 @@ Click **[HERE](README.md)** for English version.
 
 ## EDI 工程信息
 &emsp;&emsp;演进 - 远古 - 原核 (M5P1 R4T1)
+
+## 杰出贡献者
+&emsp;&emsp;宋磊锋 - ARM Cortex M3/4/7的GCC汇编支持。

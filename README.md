@@ -6,20 +6,21 @@
 [![Github release](https://img.shields.io/github/release/EDI-Systems/M5P1_MuProkaron.svg)](https://github.com/EDI-Systems/M5P1_MuProkaron/releases/latest)
 [![Github commits](https://img.shields.io/github/commits-since/EDI-Systems/M5P1_MuProkaron/master@{30day}.svg)](https://github.com/EDI-Systems/M5P1_MuProkaron/compare/master@{30day}...master)
 ![language](https://img.shields.io/badge/language-C-orange.svg)
-![Build](https://travis-ci.org/EDI-Systems/M5P1_MuProkaron.svg?branch=master) 
+[![Build](https://travis-ci.org/EDI-Systems/M5P1_MuProkaron.svg?branch=master)](https://travis-ci.org/EDI-Systems/M5P1_MuProkaron) 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1684/badge)](https://bestpractices.coreinfrastructure.org/projects/1684) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/be656c1e1f014a6abf038b4455b03bba)](https://www.codacy.com/app/EDI-Systems/M5P1_MuProkaron?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=EDI-Systems/M5P1_MuProkaron&amp;utm_campaign=Badge_Grade) 
 [![Join the chat at https://gitter.im/M5P1_MuProkaron/Lobby](https://badges.gitter.im/M5P1_MuProkaron/Lobby.svg)](https://gitter.im/M5P1_MuProkaron/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 点击 **[这里](README_CN.md)** 查看中文版。
 
-&ensp;&ensp;&ensp;&ensp;**RMP** is a small real-time operating system which focuses on formal reliability and simplicity. It achieves reliability by deployment of formal techniques(not completed yet). All the basic functionalities that are necessary for RTOSes are provided, but nothing more. This guarantees that the system is the minimum possible kernel and is also suitable to be used as a guest operating system when hosted on virtual machine monitors.  
+&ensp;&ensp;&ensp;&ensp;**RMP** is a small real-time operating system which focuses on formal reliability and simplicity. It achieves reliability by deployment of formal techniques(not completed yet; only whitebox testing with 100% branch coverage done. The kernel can be regarded as pre-certified IEC 61508 SIL2, or EAL 4). All the basic functionalities that are necessary for RTOSes are provided, but nothing more. This guarantees that the system is the minimum possible kernel and is also suitable to be used as a guest operating system when hosted on virtual machine monitors.  
 
 &ensp;&ensp;&ensp;&ensp;This operating system is much **leaner** than any other RTOSes, especially when compared to _FreeRTOS_ or _RT-Thread_, and understanding it should be simple enough. Yet it provides a complete set of functions that you may need during resource-constrained microcontroller development, such as **efficient memory management**, **anti-aliasing graphics**, and **various helper functions**. All these features come in a **single .C** file, and are **without any extra RAM consumption**!
 
 &ensp;&ensp;&ensp;&ensp;The manual of the operating system can be found **[here](https://github.com/EDI-Systems/M5P1_MuProkaron/blob/master/Documents/M5P1_Light-Weight-RTOS-User-Manual.pdf)**.
 
 &ensp;&ensp;&ensp;&ensp;Read **[Contributing](CONTRIBUTING.md)** and **[Code of Conduct](CODE_OF_CONDUCT.md)** if you want to contribute, and **[Pull Request Template](PULL_REQUEST_TEMPLATE.md)** when you make pull requests.
-This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or **[modified MIT license](MODMIT.md)**. **Commercial** licenses are also available upon request.
+This software is an official work of EDI, and thus belongs to the **public domain**. All copyrights reserved by EDI are granted to all entities under all applicable laws to the maximum extent.
 
 &ensp;&ensp;&ensp;&ensp;For vendor-supplied packages and hardware abstraction libraries, please refer to the **[M0P0_Library](https://github.com/EDI-Systems/M0P0_Library)** repo to download and use them properly.
 
@@ -151,21 +152,32 @@ This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or 
 ```
 
 ### Typical performance figures for all supported architectures
+
+&ensp;&ensp;&ensp;&ensp;Flash and SRAM consumption is calculated in kB, while the other figures are calculated in CPU clock cycles. All values listed in the table below are **typical** (useful system) values, not **minimum** values, because minimum values on system size seldom make any real sense. HAL library are also included in the size numbers.  
+
+&ensp;&ensp;&ensp;&ensp;The **absolute minimum** value for RMP is about **1.6k ROM and 432 byte RAM**, which is reached on the HC32L136K8TA (Cortex-M0+) port, and this number even included the 60-byte thread control block and 256-byte stack of the first thread, and a 64-byte kernel interrupt response stack. The OS kernel and the stripped down HAL only consumes **52 bytes** of memory combined. If you are willing to push this limit even further, then the **manufacturer HAL is a rip-off for you** and you can roll your own.  
+
 |Machine      |Toolchain     |Flash|SRAM|Yield|Mail |Sem  |Mail/Int|Sem/Int|Mem  |
 |:-----------:|:------------:|:---:|:--:|:---:|:---:|:---:|:------:|:-----:|:---:|
+|DSPIC33E     |XC16-GCC      |4.46 |1.15|526  |828  |750  |914     |884    |579  |
 |MSP430       |TI CCS7       |2.90 |0.64|495  |906  |786  |830     |736    |1575 |
 |Cortex-M0    |Keil uVision 5|4.94 |1.65|374  |663  |616  |659     |617    |N/A  |
 |Cortex-M0+   |Keil uVision 5|6.25 |1.65|334  |607  |544  |588     |552    |N/A  |
 |Cortex-M3    |Keil uVision 5|5.31 |1.65|252  |513  |448  |465     |418    |311  |
 |Cortex-M4    |Keil uVision 5|5.46 |1.66|188  |386  |353  |361     |329    |233  |
 |Cortex-M7    |Keil uVision 5|6.66 |1.65|196  |288  |277  |296     |296    |183  |
-|Cortex-M7-RVM|Keil uVision 5|2.09 |2.29|1068 |1179 |1221 |1402    |1444   |176  |
+|Cortex-M7    |GCC           |7.71 |1.98|176  |313  |276  |290     |268    |193  |
+|Cortex-M7-RVM|Keil uVision 5|2.09 |2.29|1068 |1256 |1195 |884     |866    |176  |
+|Cortex-M7-RVM|GCC           |2.15 |2.10|1103 |1277 |1225 |907     |866    |177  |
 |Cortex-R4    |TI CCS7       |15.1 |1.42|281  |458  |406  |424     |368    |274  |
 |Cortex-R5    |TI CCS7       |18.2 |3.72|305  |471  |426  |472     |432    |267  |
-|MIPS M14k    |XC32-GCC      |17.2 |2.46|264  |358  |340  |421     |415    |213  |
+|MIPS M14k    |XC32-GCC      |17.2 |2.46|263  |378  |358  |430     |420    |211  |
+|RV32IMAC     |GCC           |2.24 |2.89|261  |585  |506  |~800**  |~800** |N/A  |
 |X86-LINUX    |GCC           |N/A  |N/A |33000|35000|33000|35000   |33000  |136  |
 
-*As a comparison, RT-Linux 4.12's best context switch time on Cortex-M7 is bigger than 25000 cycles. This is measured with futex; if other forms of IPC such as pipes are used, this time is even longer.
+*As a comparison, RT-Linux 4.12's best context switch time on Cortex-M7 is bigger than 25000 cycles. This is measured with futex; if other forms of IPC such as pipes are used, this time is even longer.  
+
+**This is for reference only; the part used for evaluation relies on SPI Flash interface and can sometimes have a response time of 45000 cycles on a single instruction cache miss. Conventionally external SPI-Flash based device need large internal memory to run their code from to make these measurements, however this part simply does not have that much memory.
 <!-- |MSP430       |GCC           |     |    |     |     |     |        |       |     | -->
 <!-- |RL78         |GCC           |     |    |     |     |     |        |       |     | -->
 <!-- |Cortex-M3    |GCC           |     |    |     |     |     |        |       |     | -->
@@ -174,8 +186,7 @@ This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or 
 <!-- |Cortex-R4    |GCC           |     |    |     |     |     |        |       |     | -->
 <!-- |Cortex-R5    |GCC           |     |    |     |     |     |        |       |     | -->
 
-&ensp;&ensp;&ensp;&ensp;**Flash and SRAM consumption is calculated in kB, while the other figures are calculated in CPU clock cycles. All values listed here are typical (useful system) values, not minimum values, because minimum values on system size seldom make any real sense. HAL library are also included in the size numbers. The absolute minimum value for RMP is about 1k ROM/0.5k RAM.**
-
+- DSPIC33E is evaluated with DSPIC33EP512MU810.
 - MSP430 is evaluated with MSP430FR5994.
 - Cortex-M0 is evaluated with STM32F030F4P6.
 - Cortex-M0+ is evaluated with STM32L053C8T6.
@@ -186,6 +197,7 @@ This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or 
 - Cortex-R4 is evaluated with TMS570LS0432.
 - Cortex-R5 is evaluated with TMS570LC4357.
 - MIPS M14k is evaluated with PIC32MZ2048EFM100.
+- RV32IMAC is evaluated with FE310-G000.
 - X86 Linux is evaluated with Ubuntu 16.04 on i7-4820k @ 3.7GHz.
 
 &ensp;&ensp;&ensp;&ensp;All compiler options are the highest optimization (usually -O3) and optimized for time. 
@@ -199,11 +211,9 @@ This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or 
 ### Possible New Architecture Supports
 |Architecture   |Reason                 |Priority                      |
 |:-------------:|:---------------------:|:----------------------------:|
-|PIC24/33/dsPIC |Largely used 16-bit MCU|:star::star::star::star::star:|
-|RL78           |Largely used 16-bit MCU|:star::star::star:            |
-|TI C2000       |Largely used DSP       |:star::star:                  |
-|RISC-V         |New RISC architecture  |:star::star::star::star:      |
-|MicroBlaze     |Largely used soft core |:star:                        |
+|RL78           |Largely used 16-bit MCU|:star::star::star::star::star:|
+|TI C2000       |Largely used DSP       |:star::star::star::star:      |
+|MicroBlaze     |Largely used soft core |:star::star:                  |
 |NIOS II        |Largely used soft core |:star:                        |
 
 ### Architectures NOT Supported
@@ -251,7 +261,7 @@ This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or 
 - Keil uVision 5 (armcc)
 - Code composer studio
 - MPLAB X XC32
-- gcc/clang-llvm
+- GCC/Clang-LLVM
 
 &ensp;&ensp;&ensp;&ensp;Other toolchains are not recommended nor supported at this point, though it might be possible to support them later on.
 
@@ -261,3 +271,6 @@ This software is **triple-licensed**: it is either **[LGPL v3](LICENSE.md)** or 
 
 ## EDI Project Information
 &ensp;&ensp;&ensp;&ensp;Mutate - Protero - Prokaron (M5P1 R4T1)
+
+## Starring Contributors
+&ensp;&ensp;&ensp;&ensp;Leifeng Song - ARM Cortex-M3/4/7 assembly port.
